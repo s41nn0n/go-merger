@@ -67,6 +67,9 @@ func MergeMasterInterface(into, from interface{}) (interface{}, error) {
 	var intoString, fromString []byte
 	var err error
 
+	fmt.Println(into)
+	fmt.Println(from)
+
 	intoString, err = json.Marshal(into)
 	if err != nil {
 		return nil, MergeError{1}
