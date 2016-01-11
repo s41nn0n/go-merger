@@ -29,18 +29,15 @@ MergeMaster ...
 */
 func MergeMaster(into *map[string]interface{}, from map[string]interface{}) {
 	/*
-	   This can be changed.
+	   This can be changed (possibly).
 	     To add concurrecncy.
 	     To speed up this process
 	*/
 	for key, value := range *into {
 		if (value == nil || value == "") && (from[key] != nil || from[key] != "") {
 			(*into)[key] = from[key]
-			// fmt.Println(fmt.Sprintf("\t\t%s - %v", key, (*into)[key]))
 		}
 	}
-
-	// fmt.Println(fmt.Sprintf("%+v", into))
 }
 
 /*
@@ -72,12 +69,12 @@ func MergeMasterInterface(into, from interface{}) (interface{}, error) {
 
 	intoString, err = json.Marshal(into)
 	if err != nil {
-		return nil, MergeError{1}
+		return nil, MergeError{2}
 	}
 
 	fromString, err = json.Marshal(from)
 	if err != nil {
-		return nil, MergeError{1}
+		return nil, MergeError{3}
 	}
 
 	var retString string
@@ -85,7 +82,7 @@ func MergeMasterInterface(into, from interface{}) (interface{}, error) {
 	retString, err = MergeMasterJSON(string(intoString[:]), string(fromString[:]))
 	if err != nil {
 		fmt.Println(retString)
-		return nil, MergeError{1}
+		return nil, MergeError{4}
 	}
 
 	err = json.Unmarshal([]byte(retString), into)
