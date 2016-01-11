@@ -34,13 +34,13 @@ func MergeMaster(into *map[string]interface{}, from map[string]interface{}) {
 	     To speed up this process
 	*/
 	for key, value := range *into {
-		fmt.Println(fmt.Sprintf("\t\t%s - %v", key, value))
-		if value == nil && from[key] != nil {
-			fmt.Println(fmt.Sprintf("\t\t%s - %v", key, value))
+		if (value == nil || value == "") && (from[key] != nil || from[key] != "") {
 			(*into)[key] = from[key]
-			// into[key] = from[key]
+			fmt.Println(fmt.Sprintf("\t\t%s - %v", key, (*into)[key]))
 		}
 	}
+
+	fmt.Println(fmt.Sprintf("%+v", into))
 }
 
 /*
@@ -49,12 +49,14 @@ MergeMasterJSON ...
 func MergeMasterJSON(into, from string) (string, error) {
 	var intoStruct, fromStruct map[string]interface{}
 	var err error
+
 	err = json.Unmarshal([]byte(into), &intoStruct)
 	if err != nil {
 		fmt.Println(err)
 		return "", MergeError{1}
 	}
-	err = json.Unmarshal([]byte(from), fromStruct)
+	err = json.Unmarshal([]byte(from), &fromStruct)
+
 	MergeMaster(&intoStruct, fromStruct)
 
 	ret, err := json.Marshal(&intoStruct)
@@ -67,9 +69,6 @@ MergeMasterInterface ...
 func MergeMasterInterface(into, from interface{}) (interface{}, error) {
 	var intoString, fromString []byte
 	var err error
-
-	fmt.Println(into)
-	fmt.Println(from)
 
 	intoString, err = json.Marshal(into)
 	if err != nil {
