@@ -1,5 +1,5 @@
 #Go-Merger
-* Takes Two structs and Merges them "with some rules"
+* Takes Two structs and Merges them "with some very basic rules"
 * Data from
   * json
   * map
@@ -8,4 +8,4 @@
 
 ##TODO:
 * Finish Test
-* Combine data
+* Combine Structs
