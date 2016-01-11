@@ -4,7 +4,6 @@
   * json
   * map
   * interface
-  * interface
 
 ##TODO:
 * Finish Test
