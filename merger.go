@@ -36,11 +36,11 @@ func MergeMaster(into *map[string]interface{}, from map[string]interface{}) {
 	for key, value := range *into {
 		if (value == nil || value == "") && (from[key] != nil || from[key] != "") {
 			(*into)[key] = from[key]
-			fmt.Println(fmt.Sprintf("\t\t%s - %v", key, (*into)[key]))
+			// fmt.Println(fmt.Sprintf("\t\t%s - %v", key, (*into)[key]))
 		}
 	}
 
-	fmt.Println(fmt.Sprintf("%+v", into))
+	// fmt.Println(fmt.Sprintf("%+v", into))
 }
 
 /*
