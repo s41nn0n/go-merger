@@ -27,17 +27,18 @@ MergeMaster ...
 
   This will itterate through the values in into, and only if empty, will try fetch the data from
 */
-func MergeMaster(into map[string]interface{}, from map[string]interface{}) {
+func MergeMaster(into *map[string]interface{}, from map[string]interface{}) {
 	/*
 	   This can be changed.
 	     To add concurrecncy.
 	     To speed up this process
 	*/
-	for key, value := range into {
+	for key, value := range *into {
 		fmt.Println(fmt.Sprintf("\t\t%s - %v", key, value))
 		if value == nil && from[key] != nil {
 			fmt.Println(fmt.Sprintf("\t\t%s - %v", key, value))
-			into[key] = from[key]
+			(*into)[key] = from[key]
+			// into[key] = from[key]
 		}
 	}
 }
@@ -54,7 +55,7 @@ func MergeMasterJSON(into, from string) (string, error) {
 		return "", MergeError{1}
 	}
 	err = json.Unmarshal([]byte(from), fromStruct)
-	MergeMaster(intoStruct, fromStruct)
+	MergeMaster(&intoStruct, fromStruct)
 
 	ret, err := json.Marshal(&intoStruct)
 	return string(ret[:]), err
