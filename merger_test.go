@@ -7,8 +7,9 @@ import (
 )
 
 const (
-	intoJSONStructConst = "{\"UserID\":\"\",\"UserName\":\"test@example.com\",\"Password\":\"PASS\"}"
-	fromJSONStructConst = "{\"UserID\":\"19b90b42-786d-44bf-be74-6f6d54edfe02\",\"UserName\":\"test@example.com\",\"Password\":\"\"}"
+	intoJSONStructConst    = "{\"UserID\":\"\",\"UserName\":\"test@example.com\",\"Password\":\"PASS\"}"
+	fromJSONStructConst    = "{\"UserID\":\"19b90b42-786d-44bf-be74-6f6d54edfe02\",\"UserName\":\"test@example.com\",\"Password\":\"\"}"
+	expectedJSONtructConst = "{\"UserID\":\"19b90b42-786d-44bf-be74-6f6d54edfe02\",\"UserName\":\"test@example.com\",\"Password\":\"PASS\"}"
 )
 
 var intoJSONStruct, fromJSONStruct string
@@ -25,6 +26,12 @@ func TestMergeMasterJSON(t *testing.T) {
 		fmt.Println(err)
 		t.FailNow()
 	}
+
+	// fmt.Println(fmt.Sprintf("%s", new))
+	// if new != expectedJSONtructConst {
+	// 	fmt.Println("new != expectedJSONtructConst")
+	// 	t.FailNow()
+	// }
 
 	var x map[string]interface{}
 	if err = json.Unmarshal([]byte(new), &x); err != nil {
@@ -47,7 +54,7 @@ func TestMergeMasterJSON(t *testing.T) {
 		t.FailNow()
 	}
 
-	fmt.Println(x["UserID"])
+	// fmt.Println(x["UserID"])
 
 }
 
