@@ -2,7 +2,7 @@
 * Takes Two structs and Merges them "with some very basic rules"
 * Data from
   * json
-  * map
+  * map[string]interface{}
   * interface
 
 ##TODO:
