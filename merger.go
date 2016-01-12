@@ -6,22 +6,22 @@ import (
 )
 
 /*
-MergeError ...
+MergeError error,
+potential helper for error handling
 */
 type MergeError struct {
 	What int
 }
 
 /*
-Error ...
-	MergeError
+Error required for MergeError struct
 */
 func (e MergeError) Error() string {
 	return fmt.Sprintf("%v", e.What)
 }
 
 /*
-MergeMaster ...
+MergeMaster merges two maps
   This Takes the into, and merges the data from into it.
   This function assumes into has the primary data, from will not overwrite the data from into
 
@@ -41,7 +41,9 @@ func MergeMaster(into *map[string]interface{}, from map[string]interface{}) {
 }
 
 /*
-MergeMasterJSON ...
+MergeMasterJSON takes two json strings,
+   converts to map[string]interface{}
+   and returns json string of the interfaces merged
 */
 func MergeMasterJSON(into, from string) (string, error) {
 	var intoStruct, fromStruct map[string]interface{}
@@ -61,7 +63,9 @@ func MergeMasterJSON(into, from string) (string, error) {
 }
 
 /*
-MergeMasterInterface ...
+MergeMasterInterface client side function to pass
+any two interfaces{} and merges them.
+Returns type interface with error
 */
 func MergeMasterInterface(into, from interface{}) (interface{}, error) {
 	var intoString, fromString []byte
