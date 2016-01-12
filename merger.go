@@ -22,10 +22,10 @@ func (e MergeError) Error() string {
 
 /*
 MergeMaster merges two maps
-  This Takes the into, and merges the data from into it.
-  This function assumes into has the primary data, from will not overwrite the data from into
+This Takes the into, and merges the data from into it.
+This function assumes into has the primary data, from will not overwrite the data from into
 
-  This will itterate through the values in into, and only if empty, will try fetch the data from
+This will itterate through the values in into, and only if empty, will try fetch the data from
 */
 func MergeMaster(into *map[string]interface{}, from map[string]interface{}) {
 	/*
@@ -42,8 +42,8 @@ func MergeMaster(into *map[string]interface{}, from map[string]interface{}) {
 
 /*
 MergeMasterJSON takes two json strings,
-   converts to map[string]interface{}
-   and returns json string of the interfaces merged
+converts to map[string]interface{}
+and returns json string of the interfaces merged
 */
 func MergeMasterJSON(into, from string) (string, error) {
 	var intoStruct, fromStruct map[string]interface{}
